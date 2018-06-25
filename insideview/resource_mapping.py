@@ -1,0 +1,24 @@
+# coding: utf-8
+
+RESOURCE_MAPPING = {
+    'target_company_list': {
+        'resource': '/target/companies',
+        'docs': 'https://kb.insideview.com/hc/en-us/articles/204395607--POST-Contact-List'
+    },
+    'target_company_lookup': {
+        'resource': '/target/company/lookup',
+        'docs': 'https://kb.insideview.com/hc/en-us/articles/209198069--POST-Company-Lookup'
+    },
+    'target_new_company_details': {
+        'resource': '/target/companies/{new_company_id}',
+        'docs': 'https://kb.insideview.com/hc/en-us/articles/203440578--GET-New-Company-Details'
+    },
+    'target_contact_lookup': {
+        'resource': '/target/company/{company_id}/contacts',
+        'docs': 'https://kb.insideview.com/hc/en-us/articles/202798443--GET-Contact-Lookup'
+    },
+    'target_new_contact_details': {
+        'resource': '/target/contact/{new_contact_id}',
+        'docs': 'https://kb.insideview.com/hc/en-us/articles/202798453--GET-New-Contact-Details'
+    }
+}
