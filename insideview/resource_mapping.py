@@ -17,6 +17,10 @@ RESOURCE_MAPPING = {
         'resource': '/target/company/{company_id}/contacts',
         'docs': 'https://kb.insideview.com/hc/en-us/articles/202798443--GET-Contact-Lookup'
     },
+    'target_contact_list': {
+        'resource': '/target/contacts',
+        'docs': 'https://kb.insideview.com/hc/en-us/articles/204395607--POST-Contact-List'
+    },
     'target_new_contact_details': {
         'resource': '/target/contact/{new_contact_id}',
         'docs': 'https://kb.insideview.com/hc/en-us/articles/202798453--GET-New-Contact-Details'
