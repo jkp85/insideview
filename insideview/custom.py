@@ -1,4 +1,4 @@
-import json
+from urllib.parse import parse_qsl
 from tapioca.tapioca import TapiocaClient, TapiocaClientExecutor
 
 
@@ -51,7 +51,7 @@ class CustomTapiocaClientExecutor(CustomTapiocaClient, TapiocaClientExecutor):
 
             req = self._response.request
             if req.method == 'POST':
-                body = json.loads(req.body)
+                body = parse_qsl(req.body)
                 body.update(next_request_kwargs)
                 response = self.post(data=body, url=req.url)
             else:

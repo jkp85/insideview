@@ -1,4 +1,5 @@
 # coding: utf-8
+from urllib.parse import urlencode
 
 from tapioca import TapiocaAdapter, JSONAdapterMixin
 from requests.auth import AuthBase
@@ -6,6 +7,12 @@ from requests.auth import AuthBase
 from .custom import TapiocaInstantiator
 
 from .resource_mapping import RESOURCE_MAPPING
+
+
+class InsideViewAdapterMixin(JSONAdapterMixin):
+    def format_data_to_request(self, data):
+        if data:
+            return urlencode(data)
 
 
 class InsideViewAuth(AuthBase):
@@ -17,7 +24,7 @@ class InsideViewAuth(AuthBase):
         return r
 
 
-class InsideViewClientAdapter(JSONAdapterMixin, TapiocaAdapter):
+class InsideViewClientAdapter(InsideViewAdapterMixin, TapiocaAdapter):
     api_root = 'https://api.insideview.com/api/v1'
     resource_mapping = RESOURCE_MAPPING
 
