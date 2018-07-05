@@ -24,5 +24,9 @@ RESOURCE_MAPPING = {
     'target_new_contact_details': {
         'resource': '/target/contact/{new_contact_id}',
         'docs': 'https://kb.insideview.com/hc/en-us/articles/202798453--GET-New-Contact-Details'
-    }
+    },
+    'enrich': {
+        'resource': '/enrich',
+        'docs': 'https://kb.insideview.com/hc/en-us/articles/202773253--POST-Enrich'
+    },
 }
