@@ -51,7 +51,7 @@ class CustomTapiocaClientExecutor(CustomTapiocaClient, TapiocaClientExecutor):
 
             req = self._response.request
             if req.method == 'POST':
-                body = parse_qsl(req.body)
+                body = dict(parse_qsl(req.body))
                 body.update(next_request_kwargs)
                 response = self.post(data=body, url=req.url)
             else:
