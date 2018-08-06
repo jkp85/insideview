@@ -29,4 +29,20 @@ RESOURCE_MAPPING = {
         'resource': '/enrich',
         'docs': 'https://kb.insideview.com/hc/en-us/articles/202773253--POST-Enrich'
     },
+    'enrich_job': {
+        'resource': '/enrich/job',
+        'docs': 'https://kb.insideview.com/hc/en-us/articles/202693176--POST-Enrich-Job'
+    },
+    'enrich_job_status': {
+        'resource' : '/enrich/job/{job_id}',
+        'docs': 'https://kb.insideview.com/hc/en-us/articles/202693186--GET-Enrich-Job-Status',
+    },
+    'enrich_job_cancel': {
+        'resource' : '/enrich/job/{job_id}',
+        'docs': 'https://kb.insideview.com/hc/en-us/articles/202693186--GET-Enrich-Job-Status',
+    },
+    'enrich_job_results': {
+        'resource': '/enrich/job/{job_id}/results',
+        'docs': 'https://kb.insideview.com/hc/en-us/articles/202773213--GET-Enrich-Job-Results',
+    },
 }
