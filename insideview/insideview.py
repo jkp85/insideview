@@ -9,12 +9,6 @@ from .custom import TapiocaInstantiator
 from .resource_mapping import RESOURCE_MAPPING
 
 
-class InsideViewAdapterMixin(JSONAdapterMixin):
-    def format_data_to_request(self, data):
-        if data:
-            return urlencode(data)
-
-
 class InsideViewAuth(AuthBase):
     def __init__(self, access_token):
         self.access_token = access_token
@@ -24,13 +18,17 @@ class InsideViewAuth(AuthBase):
         return r
 
 
-class InsideViewClientAdapter(InsideViewAdapterMixin, TapiocaAdapter):
+class InsideViewClientAdapter(JSONAdapterMixin, TapiocaAdapter):
     api_root = 'https://api.insideview.com/api/v1'
     resource_mapping = RESOURCE_MAPPING
 
     def get_request_kwargs(self, api_params, *args, **kwargs):
-        arguments = super().get_request_kwargs(api_params, *args, **kwargs)
-        arguments['headers']['Content-Type'] = 'application/x-www-form-urlencoded'
+        arguments = TapiocaAdapter.get_request_kwargs(
+            self, api_params, *args, **kwargs)
+        if 'headers' in kwargs:
+            arguments['headers'] = kwargs['headers']
+        else:
+            arguments['headers']['Content-Type'] = 'application/x-www-form-urlencoded'
         arguments['headers']['accept'] = 'application/json'
         arguments['auth'] = InsideViewAuth(api_params.get('access_token'))
         return arguments
@@ -46,6 +44,12 @@ class InsideViewClientAdapter(InsideViewAdapterMixin, TapiocaAdapter):
         if page:
             page = int(page) + 1
             return {'page': page}
+
+    def format_data_to_request(self, data):
+        if data:
+            if hasattr(data, 'read'):
+                return data
+            return urlencode(data)
 
 
 InsideView = TapiocaInstantiator(InsideViewClientAdapter)
