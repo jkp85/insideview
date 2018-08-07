@@ -27,7 +27,7 @@ class InsideViewClientAdapter(JSONAdapterMixin, TapiocaAdapter):
             self, api_params, *args, **kwargs)
         if 'headers' not in arguments:
             arguments['headers'] = {}
-        arguments['headers']['Content-Type'] = 'application/x-www-form-urlencoded'
+            arguments['headers']['Content-Type'] = 'application/x-www-form-urlencoded'
         arguments['headers']['accept'] = 'application/json'
         arguments['auth'] = InsideViewAuth(api_params.get('access_token'))
         return arguments
