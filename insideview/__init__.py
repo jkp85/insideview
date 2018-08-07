@@ -2,7 +2,7 @@
 
 __author__ = 'Jan Kowalski'
 __email__ = 'jankowalskipraca85@gmail.com'
-__version__ = '0.1'
+__version__ = '0.1.6'
 
 
 from .insideview import InsideView  # noqa
