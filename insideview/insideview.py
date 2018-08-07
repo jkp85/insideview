@@ -25,10 +25,9 @@ class InsideViewClientAdapter(JSONAdapterMixin, TapiocaAdapter):
     def get_request_kwargs(self, api_params, *args, **kwargs):
         arguments = TapiocaAdapter.get_request_kwargs(
             self, api_params, *args, **kwargs)
-        if 'headers' in kwargs:
-            arguments['headers'] = kwargs['headers']
-        else:
-            arguments['headers']['Content-Type'] = 'application/x-www-form-urlencoded'
+        if 'headers' not in arguments:
+            arguments['headers'] = {}
+        arguments['headers']['Content-Type'] = 'application/x-www-form-urlencoded'
         arguments['headers']['accept'] = 'application/json'
         arguments['auth'] = InsideViewAuth(api_params.get('access_token'))
         return arguments
@@ -50,6 +49,11 @@ class InsideViewClientAdapter(JSONAdapterMixin, TapiocaAdapter):
             if hasattr(data, 'read'):
                 return data
             return urlencode(data)
+
+    def response_to_native(self, response):
+        if 'Content-Disposition' in response.headers:
+            return response.content
+        return response.json()
 
 
 InsideView = TapiocaInstantiator(InsideViewClientAdapter)
