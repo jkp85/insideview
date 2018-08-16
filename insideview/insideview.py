@@ -1,6 +1,10 @@
 # coding: utf-8
-from urllib.parse import urlencode
+import os
+import logging
+import requests
 
+from typing import Dict
+from urllib.parse import urlencode
 from tapioca import TapiocaAdapter, JSONAdapterMixin
 from requests.auth import AuthBase
 
@@ -15,8 +19,8 @@ def get_insideview_access_token() -> str:
     :return: InsideView API token
     """
     url = (f"https://login.insideview.com/Auth/login/v1/token.json"
-           f"?clientId={settings.INSIDE_VIEW_CLIENT_ID}"
-           f"&clientSecret={settings.INSIDE_VIEW_CLIENT_SECRET}"
+           f"?clientId={os.getenv('INSIDE_VIEW_CLIENT_ID')}"
+           f"&clientSecret={os.getenv('INSIDE_VIEW_CLIENT_SECRET')}"
            f"&grantType=cred")
     logger.debug(f"Retrieving access token {url}")
     response = requests.post(url)
