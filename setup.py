@@ -74,7 +74,7 @@ setup(
     long_description=readme,
     author=get_author(package),
     author_email=get_email(package),
-    url='https://github.com/jkp85/insideview',
+    url='https://github.com/cupofdata/insideview',
     packages=[
         'insideview',
     ],
