@@ -12,6 +12,7 @@ from .custom import TapiocaInstantiator
 
 from .resource_mapping import RESOURCE_MAPPING
 
+logger = logging.getLogger("insideview")
 
 def get_insideview_access_token() -> str:
     """
