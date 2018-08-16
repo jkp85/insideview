@@ -9,6 +9,21 @@ from .custom import TapiocaInstantiator
 from .resource_mapping import RESOURCE_MAPPING
 
 
+def get_insideview_access_token() -> str:
+    """
+    Exchange InsideView ID and Secret keys for an API access token.
+    :return: InsideView API token
+    """
+    url = (f"https://login.insideview.com/Auth/login/v1/token.json"
+           f"?clientId={settings.INSIDE_VIEW_CLIENT_ID}"
+           f"&clientSecret={settings.INSIDE_VIEW_CLIENT_SECRET}"
+           f"&grantType=cred")
+    logger.debug(f"Retrieving access token {url}")
+    response = requests.post(url)
+    response.raise_for_status()
+    return response.json()['accessTokenDetails']['accessToken']
+
+
 class InsideViewAuth(AuthBase):
     def __init__(self, access_token):
         self.access_token = access_token
