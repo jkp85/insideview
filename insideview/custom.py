@@ -1,8 +1,11 @@
-from urllib.parse import parse_qsl
 from tapioca.tapioca import TapiocaClient, TapiocaClientExecutor
+
+from urllib.parse import parse_qsl
 
 
 class CustomTapiocaClient(TapiocaClient):
+    """Wrappers that use TapiocaClient for InsideView authentication and
+    requests."""
     def _wrap_in_tapioca(self, data, *args, **kwargs):
         request_kwargs = kwargs.pop('request_kwargs', self._request_kwargs)
         return CustomTapiocaClient(self._instatiate_api(), data=data,
