@@ -63,7 +63,7 @@ RESOURCE_MAPPING = {
     },
     'enrich_job_cancel': {
         'resource' : '/enrich/job/{job_id}',
-        'docs': 'https://kb.insideview.com/hc/en-us/articles/202693186--GET-Enrich-Job-Status',
+        'docs': 'https://kb.insideview.com/hc/en-us/articles/202693206--DELETE-Cancel-Enrich-Job',
     },
     'enrich_job_results': {
         'resource': '/enrich/job/{job_id}/results',
